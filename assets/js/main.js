@@ -188,6 +188,16 @@
   }
 
   /* ---------- Tahun semasa di footer ---------- */
+  var thisYear = new Date().getFullYear();
+
   var yr = document.getElementById('yr');
-  if (yr) yr.textContent = String(new Date().getFullYear());
+  if (yr) yr.textContent = String(thisYear);
+
+  /* ---------- Kira tahun pengalaman supaya tidak lapuk ---------- */
+  Array.prototype.slice.call(document.querySelectorAll('[data-since]')).forEach(function (el) {
+    var since = parseInt(el.getAttribute('data-since'), 10);
+    if (!since) return;
+    var years = thisYear - since;
+    if (years > 0) el.textContent = String(years);
+  });
 })();
