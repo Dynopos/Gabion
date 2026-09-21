@@ -64,7 +64,7 @@ h1,h2,h3,h4{
   font-family:var(--f-dsp);font-weight:600;color:var(--ink);
   line-height:1.1;letter-spacing:-.025em;margin:0 0 .5em;text-wrap:balance;
 }
-h1{font-size:clamp(2.3rem,6.4vw,5.1rem);font-weight:500;letter-spacing:-.04em}
+h1{font-size:clamp(2.3rem,5.4vw,4.2rem);font-weight:500;letter-spacing:-.04em}
 h2{font-size:clamp(2rem,3.6vw,3.15rem);letter-spacing:-.035em}
 h3{font-size:1.3rem;letter-spacing:-.02em}
 p{margin:0 0 1.15em}
