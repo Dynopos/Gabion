@@ -63,7 +63,7 @@ borang sebut harga → footer → butang WhatsApp terapung.
 
 | Perkara | Lokasi | Nilai semasa |
 |---|---|---|
-| Domain | `canonical`, `og:url`, `og:image`, `sitemap.xml`, `robots.txt` | `https://gabionwall.my/` |
+| ~~Domain~~ | — | ✅ Selesai — `gabionwall.com.my` (ikut fail `CNAME`) |
 | Julat harga | Seksyen `#harga` + JSON-LD `priceRange` | RM250 / RM320 / RM450 per m² |
 | Waranti 5 tahun | Jalur statistik + pakej Retaining Wall | Sahkan tempoh sebenar |
 | Waktu operasi | Footer + JSON-LD `openingHoursSpecification` | Isnin–Sabtu, 8 pagi – 6 petang |
