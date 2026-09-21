@@ -1,10 +1,9 @@
-/* Gubah Bina — Gabion Wall Malaysia
-   Nota: tukar WA_NUMBER di bawah kepada nombor WhatsApp rasmi (format antarabangsa,
-   tanpa tanda '+', contoh: 60111149 6842 -> "601111496842"). */
+/* GUBAH BINA SDN. BHD. (201901025225) — Gabion Wall Malaysia
+   Nota: WA_NUMBER dalam format antarabangsa tanpa '+' dan tanpa ruang. */
 (function () {
   'use strict';
 
-  var WA_NUMBER = '601111496842';
+  var WA_NUMBER = '60145988988';
 
   /* ---------- Menu mobile ---------- */
   var burger = document.getElementById('burger');
@@ -32,20 +31,43 @@
       }
     });
 
-    // Tutup menu bila skrin dibesarkan ke desktop
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 900) setMenu(false);
+      if (window.innerWidth > 920) setMenu(false);
     });
   }
 
-  /* ---------- Bayang header bila skrol ---------- */
-  var header = document.getElementById('header');
-  if (header) {
+  /* ---------- Header state bila skrol ---------- */
+  var hdr = document.getElementById('hdr');
+  if (hdr) {
     var onScroll = function () {
-      header.classList.toggle('is-stuck', window.scrollY > 8);
+      hdr.classList.toggle('is-stuck', window.scrollY > 8);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reveals.length) {
+    /* tiada apa-apa */
+  } else if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry, i) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        // Sedikit lengah berperingkat untuk item bersebelahan
+        var siblings = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+        el.style.transitionDelay = Math.min(siblings, 5) * 70 + 'ms';
+        el.classList.add('is-in');
+        revealObs.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    reveals.forEach(function (el) { revealObs.observe(el); });
   }
 
   /* ---------- Sorot pautan nav bagi seksyen semasa ---------- */
@@ -61,10 +83,7 @@
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         links.forEach(function (a) {
-          a.classList.toggle(
-            'is-active',
-            a.getAttribute('href') === '#' + entry.target.id
-          );
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id);
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
@@ -73,7 +92,7 @@
   }
 
   /* ---------- FAQ: buka satu pada satu masa ---------- */
-  var faqItems = Array.prototype.slice.call(document.querySelectorAll('.faq__item'));
+  var faqItems = Array.prototype.slice.call(document.querySelectorAll('.faq__i'));
   faqItems.forEach(function (item) {
     item.addEventListener('toggle', function () {
       if (!item.open) return;
@@ -139,7 +158,7 @@
         }
       }
 
-      // Nombor telefon Malaysia: 9–11 digit selepas membuang simbol biasa
+      // Nombor telefon Malaysia: 9-12 digit selepas membuang simbol biasa
       var digits = fon.val.replace(/[\s\-()+.]/g, '');
       if (!/^\d{9,12}$/.test(digits)) {
         fon.el.setAttribute('aria-invalid', 'true');
@@ -157,10 +176,7 @@
         'Jenis kerja: ' + jenis.val
       ];
 
-      if (info.val) {
-        lines.push('Maklumat tambahan: ' + info.val);
-      }
-
+      if (info.val) lines.push('Maklumat tambahan: ' + info.val);
       lines.push('', 'Terima kasih.');
 
       window.open(

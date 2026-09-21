@@ -1,61 +1,80 @@
-# Gabion Wall Malaysia — Landing Page (Gubah Bina)
+# Gabion Wall Malaysia — Landing Page
 
-Landing page statik satu halaman untuk perkhidmatan **gabion wall / tembok penahan**,
-dibina menggunakan HTML, CSS dan JavaScript tulen — tiada framework, tiada langkah build.
+Landing page statik satu halaman untuk **Gubah Bina Sdn. Bhd.**, kontraktor
+pakar gabion wall / tembok penahan. HTML, CSS dan JavaScript tulen — tiada
+framework, tiada langkah build.
+
+## Maklumat syarikat (dari Sijil Pendaftaran SSM)
+
+| Perkara | Butiran |
+|---|---|
+| Nama berdaftar | GUBAH BINA SDN. BHD. |
+| No. pendaftaran SSM | 201901025225 (1334554-P) |
+| Tarikh diperbadankan | 17 Julai 2019 |
+| Jenis | Limited by shares · Private limited |
+| Status | Existing |
+| Alamat berdaftar & perniagaan | Lot 2091, Kg. Padang Kota, Daerah Kota, 15100 Kota Bharu, Kelantan |
+| Aktiviti berdaftar | Construction · Transportation · Wholesale of a variety of goods |
+| Telefon / WhatsApp | +60 14-598 8988 |
+| E-mel | afiqmustapha988@gmail.com |
+
+Nombor SSM dipaparkan di **announce bar, seksyen Tentang, seksyen Kenapa
+Gubah Bina, FAQ, seksyen Hubungi, footer** dan di dalam JSON-LD.
 
 ## Struktur fail
 
 ```
 index.html              Halaman utama (semua seksyen)
-assets/css/style.css    Gaya penuh + responsif (desktop → 320px)
-assets/js/main.js       Menu mobile, scroll-spy, FAQ, borang → WhatsApp
+assets/css/style.css    Design system + responsif (1440px → 290px)
+assets/js/main.js       Menu mobile, scroll reveal, scroll-spy, FAQ, borang → WhatsApp
 assets/img/             Gambar projek sebenar + logo
 robots.txt              Arahan crawler
 sitemap.xml             Peta laman
 ```
 
+## Reka bentuk
+
+Gaya premium dan moden:
+
+- **Tipografi** — `Outfit` (paparan) + `Inter` (teks), skala besar, `letter-spacing` negatif
+- **Warna** — jenama `#E8471F` dari logo, skala neutral hangat, aksen emas `#C9A227` untuk elemen kredensial
+- **Hero** — imej penuh skrin, lapisan gradien radial, tajuk bergradien, penunjuk skrol
+- **Header** — sticky dengan `backdrop-filter`, sempadan muncul bila skrol
+- **Gerakan** — scroll reveal berperingkat (IntersectionObserver), hover lift pada kad, garis aksen pada kad
+- Semua animasi dimatikan di bawah `prefers-reduced-motion`
+
 ## Seksyen halaman
 
-1. Hero — tajuk utama, CTA WhatsApp, lencana kepercayaan
-2. Jalur kelebihan (jaminan, kru sendiri, gred mesh, jadual)
-3. Apa Itu Gabion Wall — penerangan teknikal
-4. Perkhidmatan — 6 kad servis
-5. Gabion vs Konkrit — jadual perbandingan
-6. Projek — galeri kerja sebenar
-7. Proses — 5 langkah
-8. Harga — 3 pakej
-9. Testimoni pelanggan
-10. FAQ — accordion (dengan skema `FAQPage`)
-11. Kawasan liputan
-12. Borang sebut harga → hantar terus ke WhatsApp
-13. Footer + butang WhatsApp terapung
+Announce bar (SSM) → header → hero → jalur statistik → 01 Apa Itu Gabion →
+02 Perkhidmatan (6 kad) → 03 Gabion vs Konkrit → 04 Projek → 05 Proses →
+06 Harga → 07 Kenapa Gubah Bina (kredensial SSM) → 08 FAQ → kawasan liputan →
+borang sebut harga → footer → butang WhatsApp terapung.
 
 ## SEO
 
-- `<title>`, meta description, canonical, Open Graph + Twitter Card
-- JSON-LD: `LocalBusiness` / `GeneralContractor` + `FAQPage`
-- Satu `<h1>` sahaja, hierarki heading teratur
-- Semua `<img>` ada `alt` deskriptif, `width`/`height` (elak layout shift)
-- Imej hero `preload` + `fetchpriority="high"`, imej lain `loading="lazy"`
-- `robots.txt` + `sitemap.xml`
-- Bahasa: `lang="ms"`
+- Tajuk, meta description, canonical, Open Graph + Twitter Card
+- JSON-LD `LocalBusiness` / `GeneralContractor` (termasuk `identifier` no. SSM,
+  `foundingDate`, alamat penuh) + `FAQPage`
+- Satu `<h1>`, hierarki heading teratur, semua `<img>` ada `alt` + `width`/`height`
+- Imej hero `preload` + `fetchpriority="high"`, selebihnya `loading="lazy"`
+- `robots.txt` + `sitemap.xml`, `lang="ms"`
 
-## Perkara yang perlu ditukar sebelum go-live
-
-Nilai di bawah adalah **placeholder** dan mesti digantikan dengan maklumat rasmi:
+## Yang masih perlu ditukar sebelum go-live
 
 | Perkara | Lokasi | Nilai semasa |
 |---|---|---|
-| Nombor WhatsApp | `assets/js/main.js` (`WA_NUMBER`), semua pautan `wa.me/` dan `tel:` dalam `index.html` | `601111496842` |
-| E-mel | `index.html` (borang, footer, JSON-LD) | `enquiry@gabionwall.my` |
-| Alamat pejabat | `index.html` (seksyen Hubungi, footer, JSON-LD) | 848C Kg Kelar Joha, Pasir Mas |
 | Domain | `canonical`, `og:url`, `og:image`, `sitemap.xml`, `robots.txt` | `https://gabionwall.my/` |
-| Statistik hero | `index.html` (`.hero__badges`) | 15+ tahun, 300+ projek |
-| Julat harga | Seksyen `#harga` + JSON-LD `priceRange` | RM250 / RM320 / RM450 |
-| Testimoni | Seksyen `#testimoni` | Contoh — ganti dengan ulasan sebenar |
+| Julat harga | Seksyen `#harga` + JSON-LD `priceRange` | RM250 / RM320 / RM450 per m² |
+| Waranti 5 tahun | Jalur statistik + pakej Retaining Wall | Sahkan tempoh sebenar |
+| Waktu operasi | Footer + JSON-LD `openingHoursSpecification` | Isnin–Sabtu, 8 pagi – 6 petang |
 
-> **Penting:** testimoni dan statistik adalah contoh. Gantikan dengan data sebenar
-> sebelum laman disiarkan, supaya tidak mengelirukan pelanggan.
+> **Tiada testimoni dipaparkan.** Seksyen testimoni rekaan telah dibuang dan
+> digantikan dengan kredensial SSM yang boleh disahkan. Tambah testimoni hanya
+> apabila ada ulasan pelanggan sebenar.
+
+Nombor telefon disimpan di tiga tempat: pemalar `WA_NUMBER` dalam
+`assets/js/main.js`, pautan `wa.me/` dan pautan `tel:` dalam `index.html`.
+Tukar kesemuanya bersama jika nombor berubah.
 
 ## Cara jalankan secara setempat
 
@@ -66,5 +85,5 @@ python3 -m http.server 8000
 
 ## Deploy
 
-Fail statik sahaja — boleh terus dihos di GitHub Pages, Netlify, Vercel,
-Cloudflare Pages atau mana-mana hosting cPanel biasa. Tiada proses build diperlukan.
+Fail statik sahaja — GitHub Pages, Netlify, Vercel, Cloudflare Pages atau
+hosting cPanel biasa. Tiada proses build diperlukan.
